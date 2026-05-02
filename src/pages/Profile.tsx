@@ -151,7 +151,6 @@ const Profile = () => {
                           {items.length === 0 && <p className="font-body text-xs text-muted-foreground">Loading items…</p>}
                           <div className="pt-2 border-t border-border space-y-1">
                             <p className="font-body text-[11px] text-muted-foreground">Payment: {o.payment_method === 'cod' ? 'Cash on Delivery' : 'Online Payment'}</p>
-                            <Link to="/track-order" className="font-body text-[11px] text-primary hover:underline inline-block">Track this order →</Link>
                           </div>
                         </div>
                       )}
@@ -165,7 +164,6 @@ const Profile = () => {
 
         <div className="space-y-2">
           {[
-            { to: '/track-order', label: 'Track Order' },
             { to: '/about', label: 'About SAFIRA' },
             { to: '/contact', label: 'Contact Us' },
             { to: '/shipping', label: 'Shipping & Returns' },

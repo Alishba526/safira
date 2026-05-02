@@ -136,9 +136,8 @@ const Checkout = () => {
       // WhatsApp message
       const itemsList = items.map(i => `• ${i.name} (${i.size}) x${i.quantity} — Rs ${(i.price * i.quantity).toLocaleString()}`).join('\n');
       const promoLine = promoApplied ? `\n🎟️ Promo: ${promoApplied.code} (-Rs ${discount.toLocaleString()})` : '';
-      const trackUrl = `${window.location.origin}/track?id=${order.id}`;
       const whatsappMsg = encodeURIComponent(
-        `🛍️ *New SAFIRA Order*\n\n🆔 Order: #${order.id.slice(0, 8).toUpperCase()}\n👤 ${form.name}\n📞 ${form.phone}\n📧 ${form.email}\n📍 ${form.address}, ${form.city}\n\n${itemsList}${promoLine}\n\n💰 *Total: Rs ${grandTotal.toLocaleString()}*\n💳 ${form.payment === 'cod' ? 'Cash on Delivery' : 'Online Payment'}\n\n🔎 Track: ${trackUrl}`
+        `🛍️ *New SAFIRA Order*\n\n🆔 Order: #${order.id.slice(0, 8).toUpperCase()}\n👤 ${form.name}\n📞 ${form.phone}\n📧 ${form.email}\n📍 ${form.address}, ${form.city}\n\n${itemsList}${promoLine}\n\n💰 *Total: Rs ${grandTotal.toLocaleString()}*\n💳 ${form.payment === 'cod' ? 'Cash on Delivery' : 'Online Payment'}`
       );
       const whatsappUrl = `https://wa.me/923339261623?text=${whatsappMsg}`;
 
@@ -148,7 +147,7 @@ const Checkout = () => {
       await Swal.fire({
         icon: 'success',
         title: 'Order Placed! 🎉',
-        html: `<p style="color:#e8dfd0">Your order <strong>#${order.id.slice(0, 8).toUpperCase()}</strong> has been placed!<br/><span style="font-size:12px;opacity:0.8">Save this Order ID to track your shipment.</span><br/><span style="font-size:12px;opacity:0.7">Redirecting to WhatsApp confirmation...</span></p>`,
+        html: `<p style="color:#e8dfd0">Your order <strong>#${order.id.slice(0, 8).toUpperCase()}</strong> has been placed!<br/><span style="font-size:12px;opacity:0.8">Save this Order ID for your records.</span><br/><span style="font-size:12px;opacity:0.7">Redirecting to WhatsApp confirmation...</span></p>`,
         background: '#1a1710',
         color: '#e8dfd0',
         confirmButtonColor: '#c8a96e',
@@ -159,7 +158,7 @@ const Checkout = () => {
       });
 
       window.open(whatsappUrl, '_blank');
-      navigate(user ? '/profile' : `/track?id=${order.id}`);
+      navigate('/profile');
     } catch (err: any) {
       let errorMsg = err.message;
       if (errorMsg.toLowerCase().includes('row-level security') || errorMsg.toLowerCase().includes('rls')) {

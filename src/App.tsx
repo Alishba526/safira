@@ -46,7 +46,6 @@ const App = () => (
                 <Route path="/checkout" element={<Checkout />} />
                 <Route path="/auth" element={<Auth />} />
                 <Route path="/admin" element={<AdminDashboard />} />
-                <Route path="/track-order" element={<TrackOrder />} />
                 <Route path="/shipping" element={<Shipping />} />
                 <Route path="/privacy" element={<Privacy />} />
                 <Route path="/profile" element={<Profile />} />
@@ -58,6 +57,10 @@ const App = () => (
       </CartProvider>
     </AuthProvider>
   </QueryClientProvider>
+);
+
+export default App;
+>
 );
 
 export default App;

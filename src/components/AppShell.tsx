@@ -13,7 +13,6 @@ const Sidebar = () => {
     { to: '/', icon: Home, label: 'Shop' },
     { to: '/categories', icon: Menu, label: 'Menu' },
     { to: '/cart', icon: ShoppingBag, label: 'Cart', badge: totalItems },
-    { to: '/track-order', icon: MapPin, label: 'Track' },
   ];
 
   return (
@@ -52,7 +51,6 @@ const MobileBottomNav = () => {
     { to: '/', icon: Home, label: 'Shop' },
     { to: '/categories', icon: Menu, label: 'Menu' },
     { to: '/cart', icon: ShoppingBag, label: 'Cart', badge: totalItems },
-    { to: '/track-order', icon: MapPin, label: 'Track' },
   ];
 
   return (
