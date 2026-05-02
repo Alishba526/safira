@@ -17,7 +17,6 @@ import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import Auth from "./pages/Auth";
 import AdminDashboard from "./pages/AdminDashboard";
-import TrackOrder from "./pages/TrackOrder";
 import Shipping from "./pages/Shipping";
 import Privacy from "./pages/Privacy";
 import Profile from "./pages/Profile";
@@ -57,10 +56,6 @@ const App = () => (
       </CartProvider>
     </AuthProvider>
   </QueryClientProvider>
-);
-
-export default App;
->
 );
 
 export default App;

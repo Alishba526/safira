@@ -20,6 +20,12 @@ const ProductDetail = () => {
   const { toggleWishlist, isWishlisted } = useWishlist();
 
   useEffect(() => {
+    if (product?.sizes?.length > 0) {
+      setSelectedSize(product.sizes[0]);
+    }
+  }, [product]);
+
+  useEffect(() => {
     if (product) trackViewContent({ id: product.id, name: product.name, price: product.price, category: product.category });
   }, [product?.id]);
 
