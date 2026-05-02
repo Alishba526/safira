@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Jost:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 35 30% 10%;
+    --foreground: 35 20% 92%;
+
+    --card: 35 20% 14%;
+    --card-foreground: 35 20% 92%;
+
+    --popover: 35 20% 12%;
+    --popover-foreground: 35 20% 92%;
+
+    --primary: 38 70% 50%;
+    --primary-foreground: 35 30% 8%;
+
+    --secondary: 35 15% 18%;
+    --secondary-foreground: 35 20% 85%;
+
+    --muted: 35 12% 20%;
+    --muted-foreground: 35 10% 55%;
+
+    --accent: 38 70% 50%;
+    --accent-foreground: 35 30% 8%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 35 10% 22%;
+    --input: 35 10% 22%;
+    --ring: 38 70% 50%;
+
+    --radius: 8px;
+
+    --gold: 38 70% 50%;
+    --gold-light: 38 50% 65%;
+    --nude: 35 25% 88%;
+    --nude-dark: 35 15% 75%;
+    --surface: 35 20% 14%;
+    --surface-hover: 35 18% 18%;
+
+    --sidebar-background: 35 25% 8%;
+    --sidebar-foreground: 35 15% 60%;
+    --sidebar-primary: 38 70% 50%;
+    --sidebar-primary-foreground: 35 30% 8%;
+    --sidebar-accent: 35 20% 14%;
+    --sidebar-accent-foreground: 35 20% 92%;
+    --sidebar-border: 35 10% 16%;
+    --sidebar-ring: 38 70% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  background: hsl(35, 20%, 12%);
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(35, 10%, 30%);
+  border-radius: 4px;
+}
+
+/* Category tabs scrollbar hidden */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* SweetAlert luxury theme overrides */
+.safira-swal-popup {
+  border: 1px solid hsl(var(--border)) !important;
+  border-radius: 12px !important;
+  font-family: 'Jost', sans-serif !important;
+  box-shadow: 0 20px 60px -10px rgba(0, 0, 0, 0.6) !important;
+}
+.safira-swal-title {
+  font-family: 'Playfair Display', serif !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.02em !important;
+}
+.safira-swal-text {
+  font-family: 'Jost', sans-serif !important;
+  font-size: 0.875rem !important;
+}
+.safira-swal-btn {
+  font-family: 'Jost', sans-serif !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+  font-size: 0.75rem !important;
+  border-radius: 6px !important;
+}
