@@ -111,7 +111,7 @@ export const products: Product[] = [
     name: 'Amber Rêverie',
     price: 8500,
     originalPrice: 11000,
-    sizePrices: { '50ml': 8500, '100ml': 14000 },
+    sizePrices: { '50ml': 8500, '100ml': 17000 },
     category: 'fragrance',
     image: '/fragrance-1.jpg',
     description: 'A warm oriental amber fragrance with notes of vanilla, sandalwood and golden honey. Crafted in our Lahore atelier.',
