@@ -110,6 +110,7 @@ export const products: Product[] = [
     id: '8',
     name: 'Silk Reverie Dress',
     price: 18500,
+    sizePrices: { 'XS': 17500, 'S': 18500, 'M': 19500, 'L': 20500 },
     category: 'best-sellers',
     image: '/pret-1.jpg',
     description: 'A flowing silk dress crafted from the finest mulberry silk.',

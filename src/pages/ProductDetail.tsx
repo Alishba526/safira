@@ -44,7 +44,7 @@ const ProductDetail = () => {
   const wishlisted = isWishlisted(product.id);
   const discount = product.originalPrice ? Math.round(((product.originalPrice - currentPrice) / product.originalPrice) * 100) : 0;
   const total = currentPrice * qty;
-  const youPay = product.originalPrice ? Math.round(currentPrice * 0.95) * qty : total; // Display savings if applicable
+  const youPay = product.originalPrice ? Math.round(currentPrice * 0.95) * qty : total;
 
   const doAdd = () => {
     if (product.sizes.length && !selectedSize) {
