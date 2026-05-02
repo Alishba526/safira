@@ -120,6 +120,18 @@ export const products: Product[] = [
     badge: 'Save 23%',
   },
   {
+    id: '10',
+    name: 'Rose Pastel',
+    price: 8500,
+    originalPrice: 10000,
+    sizePrices: { '50ml': 8500, '100ml': 17000 },
+    category: 'fragrance',
+    image: '/fragrance-2.jpg',
+    description: 'A delicate rose-pink fragrance kissed with peach blossom, cashmere and creamy musk. Effortlessly feminine.',
+    sizes: ['50ml', '100ml'],
+    slug: 'rose-pastel',
+  },
+  {
     id: '8',
     name: 'Silk Reverie Dress',
     price: 18500,
