@@ -41,6 +41,7 @@ const ProductDetail = () => {
   }
 
   const currentPrice = (selectedSize && product.sizePrices?.[selectedSize]) || product.price;
+  console.log('Selected Size:', selectedSize, 'Current Price:', currentPrice);
   const wishlisted = isWishlisted(product.id);
   const discount = product.originalPrice ? Math.round(((product.originalPrice - currentPrice) / product.originalPrice) * 100) : 0;
   const total = currentPrice * qty;
