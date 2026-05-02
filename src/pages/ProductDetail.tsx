@@ -34,10 +34,11 @@ const ProductDetail = () => {
     );
   }
 
+  const currentPrice = (selectedSize && product.sizePrices?.[selectedSize]) || product.price;
   const wishlisted = isWishlisted(product.id);
-  const discount = product.originalPrice ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100) : 0;
-  const total = product.price * qty;
-  const youPay = product.originalPrice ? Math.round(product.price * 0.95) * qty : total; // Display savings if applicable
+  const discount = product.originalPrice ? Math.round(((product.originalPrice - currentPrice) / product.originalPrice) * 100) : 0;
+  const total = currentPrice * qty;
+  const youPay = product.originalPrice ? Math.round(currentPrice * 0.95) * qty : total; // Display savings if applicable
 
   const doAdd = () => {
     if (product.sizes.length && !selectedSize) {
@@ -46,9 +47,9 @@ const ProductDetail = () => {
     }
     const size = selectedSize || product.sizes[0] || 'One Size';
     for (let i = 0; i < qty; i++) {
-      addItem({ productId: product.id, name: product.name, price: product.price, size, image: product.image });
+      addItem({ productId: product.id, name: product.name, price: currentPrice, size, image: product.image });
     }
-    trackAddToCart({ id: product.id, name: product.name, price: product.price, quantity: qty });
+    trackAddToCart({ id: product.id, name: product.name, price: currentPrice, quantity: qty });
     return true;
   };
 
@@ -101,7 +102,7 @@ const ProductDetail = () => {
             {/* Price block */}
             <div className="mb-4">
               <div className="flex items-baseline gap-3 flex-wrap">
-                <span className="font-display text-3xl text-primary">Rs. {product.price.toLocaleString()}</span>
+                <span className="font-display text-3xl text-primary">Rs. {currentPrice.toLocaleString()}</span>
                 {product.originalPrice && (
                   <span className="font-body text-base text-muted-foreground line-through">Rs. {product.originalPrice.toLocaleString()}</span>
                 )}
@@ -109,7 +110,7 @@ const ProductDetail = () => {
               {discount > 0 && (
                 <div className="flex items-center gap-2 mt-2">
                   <span className="bg-destructive text-destructive-foreground text-[11px] font-body font-bold px-2 py-0.5 rounded">{discount}% OFF</span>
-                  <span className="font-body text-sm text-primary font-medium">You Pay: Rs. {Math.round(product.price * 0.95).toLocaleString()}</span>
+                  <span className="font-body text-sm text-primary font-medium">You Pay: Rs. {Math.round(currentPrice * 0.95).toLocaleString()}</span>
                 </div>
               )}
             </div>

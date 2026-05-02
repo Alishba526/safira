@@ -3,6 +3,7 @@ export interface Product {
   name: string;
   price: number;
   originalPrice?: number;
+  sizePrices?: Record<string, number>;
   category: 'new-arrivals' | 'pret' | 'fragrance' | 'luxury-edit' | 'accessories' | 'best-sellers';
   image: string;
   description: string;
@@ -70,6 +71,7 @@ export const products: Product[] = [
     id: '5',
     name: 'Lumière Éternelle',
     price: 9800,
+    sizePrices: { '50ml': 9800, '100ml': 16500 },
     category: 'fragrance',
     image: '/fragrance-hero.jpg',
     description: 'An enchanting blend of Turkish rose, Mysore sandalwood, and golden amber.',
@@ -80,6 +82,7 @@ export const products: Product[] = [
     id: '6',
     name: 'Oud Royale',
     price: 14500,
+    sizePrices: { '50ml': 14500, '100ml': 22000 },
     category: 'best-sellers',
     image: '/fragrance-1.jpg',
     description: 'A regal composition of rare Cambodian oud, saffron, and velvet musk.',
@@ -92,6 +95,7 @@ export const products: Product[] = [
     name: 'Velvet Noir',
     price: 11500,
     originalPrice: 14000,
+    sizePrices: { '50ml': 11500, '100ml': 18500 },
     category: 'fragrance',
     image: '/fragrance-2.jpg',
     description: 'Dark and mysterious. Velvet Noir is an intoxicating blend of black orchid, vanilla bourbon, and deep patchouli.',
