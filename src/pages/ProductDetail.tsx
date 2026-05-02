@@ -15,15 +15,29 @@ const ProductDetail = () => {
   const { products } = useProducts();
   const product = products.find(p => p.slug === slug);
   const [selectedSize, setSelectedSize] = useState('');
+  const [currentPrice, setCurrentPrice] = useState(0);
   const [qty, setQty] = useState(1);
   const { addItem } = useCart();
   const { toggleWishlist, isWishlisted } = useWishlist();
 
   useEffect(() => {
     if (product?.sizes?.length > 0) {
-      setSelectedSize(product.sizes[0]);
+      const initialSize = product.sizes[0];
+      setSelectedSize(initialSize);
+      setCurrentPrice((product.sizePrices?.[initialSize]) || product.price);
+    } else if (product) {
+        setCurrentPrice(product.price);
     }
   }, [product]);
+
+  const handleSizeChange = (size: string) => {
+    setSelectedSize(size);
+    if (product?.sizePrices?.[size]) {
+        setCurrentPrice(product.sizePrices[size]);
+    } else {
+        setCurrentPrice(product?.price || 0);
+    }
+  };
 
   useEffect(() => {
     if (product) trackViewContent({ id: product.id, name: product.name, price: product.price, category: product.category });
@@ -40,8 +54,6 @@ const ProductDetail = () => {
     );
   }
 
-  const currentPrice = (selectedSize && product.sizePrices?.[selectedSize]) || product.price;
-  console.log('Selected Size:', selectedSize, 'Current Price:', currentPrice);
   const wishlisted = isWishlisted(product.id);
   const discount = product.originalPrice ? Math.round(((product.originalPrice - currentPrice) / product.originalPrice) * 100) : 0;
   const total = currentPrice * qty;
@@ -114,12 +126,6 @@ const ProductDetail = () => {
                   <span className="font-body text-base text-muted-foreground line-through">Rs. {product.originalPrice.toLocaleString()}</span>
                 )}
               </div>
-              {discount > 0 && (
-                <div className="flex items-center gap-2 mt-2">
-                  <span className="bg-destructive text-destructive-foreground text-[11px] font-body font-bold px-2 py-0.5 rounded">{discount}% OFF</span>
-                  <span className="font-body text-sm text-primary font-medium">You Pay: Rs. {Math.round(currentPrice * 0.95).toLocaleString()}</span>
-                </div>
-              )}
             </div>
 
             <p className="font-body text-sm text-muted-foreground leading-relaxed mb-6">{product.description}</p>
@@ -132,7 +138,7 @@ const ProductDetail = () => {
                   {product.sizes.map(size => (
                     <button
                       key={size}
-                      onClick={() => setSelectedSize(size)}
+                      onClick={() => handleSizeChange(size)}
                       className={`min-w-[48px] px-4 py-2.5 text-sm font-body rounded-md border transition-colors ${
                         selectedSize === size
                           ? 'bg-primary text-primary-foreground border-primary'

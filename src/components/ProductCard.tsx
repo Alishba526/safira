@@ -11,17 +11,19 @@ const ProductCard = ({ product }: { product: Product }) => {
   const { toggleWishlist, isWishlisted } = useWishlist();
   const wishlisted = isWishlisted(product.id);
 
+  const minPrice = product.sizePrices ? Math.min(...Object.values(product.sizePrices)) : product.price;
+
   const handleQuickAdd = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
     addItem({
       productId: product.id,
       name: product.name,
-      price: product.price,
+      price: minPrice,
       size: product.sizes[0],
       image: product.image,
     });
-    trackAddToCart({ id: product.id, name: product.name, price: product.price });
+    trackAddToCart({ id: product.id, name: product.name, price: minPrice });
     sweetSuccess('Added to Bag', `${product.name} — ${product.sizes[0]}`);
   };
 
@@ -53,15 +55,9 @@ const ProductCard = ({ product }: { product: Product }) => {
       <div className="p-3">
         <div className="flex items-start justify-between gap-2">
           <div className="flex-1 min-w-0">
-            {product.originalPrice && (
-              <div className="flex items-center gap-2 mb-0.5">
-                <span className="text-sm font-body font-semibold text-foreground">Rs {product.price.toLocaleString()}</span>
-                <span className="text-xs font-body text-muted-foreground line-through">Rs {product.originalPrice.toLocaleString()}</span>
-              </div>
-            )}
-            {!product.originalPrice && (
-              <span className="text-sm font-body font-semibold text-foreground block mb-0.5">Rs {product.price.toLocaleString()}</span>
-            )}
+            <span className="text-sm font-body font-semibold text-foreground block mb-0.5">
+              {product.sizePrices ? `Starting from Rs ${minPrice.toLocaleString()}` : `Rs ${product.price.toLocaleString()}`}
+            </span>
             <h3 className="font-body text-xs text-muted-foreground truncate">{product.name}</h3>
           </div>
           <button onClick={handleQuickAdd} className="w-8 h-8 bg-primary text-primary-foreground rounded-full flex items-center justify-center flex-shrink-0 hover:bg-gold-light transition-colors" aria-label={`Add ${product.name} to bag`}>
